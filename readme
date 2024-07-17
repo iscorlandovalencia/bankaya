@@ -1,0 +1,6 @@
+ -	Instructions sonar
+		https://medium.com/automationmaster/sonarqube-c7df46614012
+
+%URL%\sonarqube-10.6.0.92116\bin\windows-x86-64
+
+mvn clean install sonar:sonar
