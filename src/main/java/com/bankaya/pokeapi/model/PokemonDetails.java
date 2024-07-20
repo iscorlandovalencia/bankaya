@@ -8,10 +8,10 @@ import lombok.Data;
 public class PokemonDetails {
 
 	private List<Abilities> abilities;
-	private int baseExperience;
-	private List<Item> heldItems;
-	private Long Id;
+	private int base_experience;
+	private List<HeldItem> held_items;
+	private int Id;
 	private String name;
-	private String locationAreaEncounters;
+	private List<String> location_area_encounters;
 	
 }

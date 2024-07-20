@@ -61,7 +61,8 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
+		<!--
+		https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
@@ -70,7 +71,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		
+
 		<!-- Lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -100,7 +101,11 @@
 			<groupId>org.glassfish.jaxb</groupId>
 			<artifactId>jaxb-runtime</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>jaxb2-maven-plugin</artifactId>
+			<version>3.2.0</version>
+		</dependency>
 		<!--
 		https://mvnrepository.com/artifact/com.sun.activation/javax.activation -->
 		<dependency>
@@ -113,17 +118,19 @@
 
 	<build>
 		<plugins>
-
+			<!--
 			<plugin>
 				<groupId>org.sonarsource.scanner.maven</groupId>
 				<artifactId>sonar-maven-plugin</artifactId>
 				<version>10.6.0.92116</version>
 			</plugin>
-
+-->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>3.3.2</version><!--$NO-MVN-MAN-VER$-->
 				<configuration>
+					<finalName>pokeapi-docker</finalName>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
@@ -132,15 +139,76 @@
 					</excludes>
 				</configuration>
 			</plugin>
-
+			<!--
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.4</version>
 			</plugin>
+
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.4</version>
+				<configuration>
+					<skip>${skipTests}</skip>
+				</configuration>
+				<executions>
+					<execution>
+						<id>jacoco-initialize</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>jacoco-site</id>
+						<phase>package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+-->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxb2-maven-plugin</artifactId>
+				<version>3.2.0</version>
+				<executions>
+					<execution>
+						<id>xjc</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<!--					<packageName>......</packageName>-->
+					<sources>
+						<source>src/main/resources/schema/Pokemon.xsd</source>
+					</sources>
+					<outputDirectory>
+						${project.build.directory}/generated-sources/
+					</outputDirectory>
+					<clearOutputDir>false</clearOutputDir>
+				</configuration>
+				<dependencies>
+					<!--
+					https://mvnrepository.com/artifact/com.sun.activation/jakarta.activation -->
+					<dependency>
+						<groupId>com.sun.activation</groupId>
+						<artifactId>jakarta.activation</artifactId>
+						<version>2.0.1</version>
+					</dependency>
+
+
+				</dependencies>
+			</plugin>
+
 		</plugins>
 	</build>
-
+	<!-- 
 	<profiles>
 		<profile>
 			<id>sonar</id>
@@ -184,5 +252,5 @@
 			</build>
 		</profile>
 	</profiles>
-
+-->
 </project>
