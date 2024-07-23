@@ -30,60 +30,52 @@ public class PokemonEndpoint {
 	@Autowired
 	private PokemonService pokemonService;
 
-	/*
-	 * @PayloadRoot(namespace = NAMESPACE_URI, localPart = "Abilities")
-	 * 
-	 * @ResponsePayload public List<> getCountry(@RequestPayload GetCountryRequest request) { 
-	 * GetCountryResponse response = new GetCountryResponse();
-	 * response.setCountry(countryRepository.findCountry(request.getName()));
-	 * 
-	 * return response; }
-	 */
-	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "Abilities")
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "getAbilitiesRequest")
 	@ResponsePayload
-	public GetAbilitiesResponse abilities(@RequestPayload GetAbilitiesRequest pokemonName) {
+	public GetAbilitiesResponse getAbilities(@RequestPayload GetAbilitiesRequest request) {
 		GetAbilitiesResponse response = new GetAbilitiesResponse();
-		response.getAbilities().addAll( pokemonService.getListOfAbilitiesFrom(pokemonName.getName()) );
+		response.getAbilities().addAll( pokemonService.getListOfAbilitiesFrom(request.getName()) );
 		return response;
 	}
 
-	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "Experience")
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "getExperienceRequest")
 	@ResponsePayload
-	public GetExperienceResponse experience(@RequestPayload GetExperienceRequest pokemonName) {
+	public GetExperienceResponse getExperience(@RequestPayload GetExperienceRequest request) {
 		GetExperienceResponse response = new GetExperienceResponse();
-		response.setExperience( BigInteger.valueOf( pokemonService.getExperienceFrom(pokemonName.getName())) );
+		response.setExperience( BigInteger.valueOf( pokemonService.getExperienceFrom(request.getName())) );
 		return response;
 	}
 
-	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "HeldItems")
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "getItemsRequest")
 	@ResponsePayload
-	public GetItemsResponse heldItems(@RequestPayload GetItemsRequest pokemonName) {
+	public GetItemsResponse getHeldItems(@RequestPayload GetItemsRequest request) {
 		GetItemsResponse response = new GetItemsResponse();
-		response.getItems().addAll( pokemonService.getListOfItemsFrom(pokemonName.getName()) );
+		response.getItems().addAll( pokemonService.getListOfItemsFrom(request.getName()) );
 		return response;
 	}
 
-	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "Id")
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "getIdRequest")
 	@ResponsePayload
-	public GetIdResponse getPokemonId(@RequestPayload GetIdRequest pokemonName) {
+	public GetIdResponse getPokemonId(@RequestPayload GetIdRequest request) {
 		GetIdResponse response = new GetIdResponse();
-		response.setId( BigInteger.valueOf( pokemonService.getIdFromName(pokemonName.getName())) );
+		response.setId( BigInteger.valueOf( pokemonService.getIdFromName(request.getName())) );
 		return response;
 	}
 
-	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "Name")
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "getNameRequest")
 	@ResponsePayload
-	public GetNameResponse getPokemonName(@RequestPayload GetNameRequest pokemonId) {
+	public GetNameResponse getPokemonName(@RequestPayload GetNameRequest request) {
+		int pokemonId = request.getId().intValue();
 		GetNameResponse response = new GetNameResponse();
-		response.setName( pokemonService.getNameFromId( pokemonId.getId().intValue() ));
+		response.setName( pokemonService.getNameFromId( pokemonId ));
 		return response;
 	}
 
-	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "LocationAreaEncounters")
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "getLocationAreaRequest")
 	@ResponsePayload
-	public GetLocationAreaResponse getLocationAreaEncounters(@RequestPayload GetLocationAreaRequest pokemonName) {
+	public GetLocationAreaResponse getLocationAreaEncounters(@RequestPayload GetLocationAreaRequest request) {
 		GetLocationAreaResponse response = new GetLocationAreaResponse();
-		response.getLocationArea().addAll( pokemonService.getListOfLocationsFrom(pokemonName.getName()) );
+		response.getLocationArea().addAll( pokemonService.getListOfLocationsFrom(request.getName()) );
 		return response;
 	}
 
