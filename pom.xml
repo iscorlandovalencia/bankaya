@@ -81,14 +81,14 @@
 
 		<!-- Swagger -->
 		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>3.0.0</version>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.6.0</version>
 		</dependency>
 		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-boot-starter</artifactId>
-			<version>3.0.0</version>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+			<version>2.6.0</version>
 		</dependency>
 
 		<dependency>
@@ -133,7 +133,7 @@
 			<groupId>org.glassfish.jaxb</groupId>
 			<artifactId>jaxb-runtime</artifactId>
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>
@@ -148,7 +148,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>3.3.2</version>
 				<configuration>
 					<finalName>pokeapi</finalName>
 					<excludes>
@@ -179,19 +178,33 @@
 					<outputDirectory>src/main/java/</outputDirectory>
 					<clearOutputDir>false</clearOutputDir>
 				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>org.glassfish.jaxb</groupId>
-						<artifactId>jaxb-xjc</artifactId>
-						<version>2.3.2</version>
-					</dependency>
-					<dependency>
-						<groupId>com.sun.activation</groupId>
-						<artifactId>jakarta.activation</artifactId>
-						<version>1.2.1</version>
-					</dependency>
-				</dependencies>
 			</plugin>
+
+			<!--			<plugin>-->
+			<!--                <groupId>org.jvnet.jaxb</groupId>-->
+			<!--                <artifactId>jaxb-maven-plugin</artifactId>-->
+			<!--                <version>4.0.0</version>-->
+			<!--                <executions>-->
+			<!--                    <execution>-->
+			<!--                        <goals>-->
+			<!--                            <goal>generate</goal>-->
+			<!--                        </goals>-->
+			<!--                    </execution>-->
+			<!--                </executions>-->
+			<!--                <configuration>-->
+			<!--                    <schemaLanguage>WSDL</schemaLanguage>-->
+			<!--
+			<generateDirectory>${project.basedir}/src/main/java</generateDirectory>-->
+			<!--
+			<generatePackage>com.bankaya.pokeapi.client.gen</generatePackage>-->
+			<!--
+			<schemaDirectory>${project.basedir}/src/main/resources/schema</schemaDirectory>-->
+			<!--                    <noFileHeader>true</noFileHeader>-->
+			<!--                    <schemaIncludes>-->
+			<!--                        <include>schema1.wsdl</include>-->
+			<!--                    </schemaIncludes>-->
+			<!--                </configuration>-->
+			<!--            </plugin>-->
 
 		</plugins>
 	</build>
