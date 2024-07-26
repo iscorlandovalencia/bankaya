@@ -24,7 +24,7 @@ public class WebServiceConfig extends WsConfigurerAdapter{
 		return new ServletRegistrationBean<>(servlet, "/ws/*");
 	}
 
-	@Bean(name = "countries")
+	@Bean(name = "schema1")
 	public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema schema) {
 		DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
 		wsdl11Definition.setPortTypeName("PokemonPort");
@@ -36,6 +36,6 @@ public class WebServiceConfig extends WsConfigurerAdapter{
 
 	@Bean
 	public XsdSchema pokemonSchema() {
-		return new SimpleXsdSchema(new ClassPathResource("schema1.xsd"));
+		return new SimpleXsdSchema(new ClassPathResource("schema/schema1.xsd"));
 	}
 }
