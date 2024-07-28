@@ -1,6 +1,5 @@
 package com.bankaya.pokeapi.service;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,7 @@ public class TransactionService {
 		
 		Transaction transaction = new Transaction();
 		transaction.setOriginIp( request.getRemoteAddr().toString() );
-		transaction.setRequestDate( new Date(System.currentTimeMillis()) );
+		transaction.setRequestDate( System.currentTimeMillis() );
 		transaction.setMethod( request.getMethod() );
 		
 		transaction.setRequest( request.getRequestURL().toString() );

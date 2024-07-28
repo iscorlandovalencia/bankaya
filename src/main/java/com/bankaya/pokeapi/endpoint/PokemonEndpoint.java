@@ -90,7 +90,7 @@ public class PokemonEndpoint {
 	public GetIdResponse getPokemonId(@RequestPayload GetIdRequest request, HttpServletRequest httpRequest,
 			HttpServletResponse httpResponse) {
 		GetIdResponse response = new GetIdResponse();
-		response.setId(BigInteger.valueOf(pokemonService.getIdFromName(request.getName())));
+		response.setId(BigInteger.valueOf(pokemonService.getIdFrom(request.getName())));
 		
 		transactionService.createTransaction(httpRequest, httpResponse);
 		transactionService.getAllTransactions().stream().forEach(System.out::println);
@@ -106,7 +106,7 @@ public class PokemonEndpoint {
 			HttpServletResponse httpResponse) {
 		int pokemonId = request.getId().intValue();
 		GetNameResponse response = new GetNameResponse();
-		response.setName(pokemonService.getNameFromId(pokemonId));
+		response.setName(pokemonService.getNameFrom(pokemonId));
 		
 		transactionService.createTransaction(httpRequest, httpResponse);
 		transactionService.getAllTransactions().stream().forEach(System.out::println);

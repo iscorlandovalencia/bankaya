@@ -31,7 +31,7 @@ public class PokemonController {
 
 	@GetMapping("/pokeapi")
 	public List<Pokemon> getPokeapi(HttpServletRequest request, HttpServletResponse response) {
-		List<Pokemon> pokemonList = pokemonService.getPokemonList();
+		List<Pokemon> pokemonList = pokemonService.getAllPokemon();
 
 		transactionService.createTransaction(request, response);
 		transactionService.getAllTransactions().stream().forEach(System.out::println);
@@ -81,7 +81,7 @@ public class PokemonController {
 
 		LOGGER.info("get id from pokemon name : " + pokemonName);
 
-		return pokemonService.getIdFromName(pokemonName);
+		return pokemonService.getIdFrom(pokemonName);
 	}
 
 	@GetMapping("/{id}")
@@ -92,7 +92,7 @@ public class PokemonController {
 
 		LOGGER.info("get name from pokemon id : " + pokemonId);
 
-		return pokemonService.getNameFromId(pokemonId);
+		return pokemonService.getNameFrom(pokemonId);
 	}
 
 	@GetMapping("/location/{name}")

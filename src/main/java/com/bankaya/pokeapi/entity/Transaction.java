@@ -1,16 +1,18 @@
 package com.bankaya.pokeapi.entity;
 
-import java.sql.Date;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="transaction")
 public class Transaction {
@@ -24,7 +26,7 @@ public class Transaction {
 	private String originIp;
 	
 	@Column(name="requestDate")
-	private Date requestDate;
+	private Long requestDate;
 	
 	@Column(name="method")
 	private String method;
