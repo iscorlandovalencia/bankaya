@@ -2,7 +2,7 @@
 
 ## General Instructions
 
-This application consumes the API rest from [Pokeapi](https://pokeapi.co/) and create a SOAP endpoint, and rest APi are created also for the full functionality.
+This application consumes the API rest from [Pokeapi](https://pokeapi.co/) and create a SOAP endpoint, and rest API are created also for the full functionality.
 
 ### Prerequisites
 
@@ -76,4 +76,8 @@ There are all api information for controller
 	- This URL get the abilities from a pokemon name
 	
 	
+## SOAP
+
+For SOAP WSDL it can be reviewed in 
+[http://localhost:8090/ws/pokemon.wsdl](http://localhost:8090/ws/pokemon.wsdl)
 
